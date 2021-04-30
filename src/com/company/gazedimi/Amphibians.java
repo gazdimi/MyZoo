@@ -4,7 +4,8 @@ public class Amphibians extends Animal implements IAnimals{
     private Kind animal_class = Kind.Amphibians;
 
     @Override
-    public Amphibians add() {
-        return new Amphibians();
+    public Amphibians edit() {
+        //edit
+        return this;
     }
 }
