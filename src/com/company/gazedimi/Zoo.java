@@ -17,10 +17,10 @@ public class Zoo {
     public static void main(String[] args) {
         
         //for testing
-        for (Animal a : animals){
+        /*for (Animal a : animals){
             System.out.println(a.getCode() + " " + a.getName() + " " + a.getKind() + " " + a.getWeight() + " " + a.getMax_age() + " " + a.getDescription());
         }
-        System.out.println("Size " + animals.size());
+        System.out.println("Size " + animals.size());*/
 
 	    new Menu();                                                                     //open main form
     }

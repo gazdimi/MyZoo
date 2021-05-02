@@ -53,7 +53,6 @@ public final class Add extends JFrame {
                 if(invalidCode || code.getText().equals("")){
                     JOptionPane.showMessageDialog(Add.this,"Please select another code.");          //dialog window
                 }else {
-
                     //check for valid name
                     if(name.getText().equals("")){
                         JOptionPane.showMessageDialog(Add.this,"Please give a name.");
