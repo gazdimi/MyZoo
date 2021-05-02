@@ -4,7 +4,7 @@ public class Mammals extends Animal implements IAnimals{
 
     private Kind animal_class = Kind.Mammals;
 
-    public Mammals(int code, String name, float weight, int max_age, String description){
+    public Mammals(int code, String name, double weight, int max_age, String description){
         super.setCode(code);
         super.setName(name);
         super.setKind(animal_class);
@@ -13,7 +13,7 @@ public class Mammals extends Animal implements IAnimals{
         super.setDescription(description);
 
         Zoo.animals.add(this);
-        super.setAvailableCode(Zoo.animals.size());
+        Zoo.serialize(Zoo.animals,"res/animals.ser");
     }
 
     /*public void example(){
@@ -23,8 +23,8 @@ public class Mammals extends Animal implements IAnimals{
     }*/
 
     @Override
-    public Mammals add() {
-        //return new Mammals();
-        return null;
+    public Mammals edit() {
+        //edit
+        return this;
     }
 }

@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Menu extends JFrame{
+public final class Menu extends JFrame{
     private JPanel menu;
     private JTextField textField1;
     private JComboBox comboBox1;
@@ -26,7 +26,8 @@ public class Menu extends JFrame{
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new Add();
+                Add instance = Add.getInstance();
+                instance.setVisible(true);
             }
         });
     }
