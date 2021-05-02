@@ -94,7 +94,7 @@ public final class Add extends JFrame {
         return Integer.toString(0);                                             //no available animals in list
     }
 
-    private boolean checkCode(int code){
+    private boolean checkCode(int code){                                            //check if code already exists
         for (Animal a : animals){
             if(code==a.getCode()){
                 return true;
@@ -103,7 +103,7 @@ public final class Add extends JFrame {
         return false;
     }
 
-    private void clear(){
+    private void clear(){                                                       //clear form fields
         availableCode = autocomplete();
         code.setText(availableCode);
         name.setText("");

@@ -34,7 +34,7 @@ public final class Menu extends JFrame{
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Add instance = Add.getInstance();
+                Add instance = Add.getInstance();                                   //add form
                 instance.setVisible(true);
             }
         });
@@ -43,7 +43,7 @@ public final class Menu extends JFrame{
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                switch (filters.getSelectedItem().toString()){
+                switch (filters.getSelectedItem().toString()){                //search animal using filters - combobox
                     case "By name":
                         search(1);
                         break;
@@ -59,12 +59,13 @@ public final class Menu extends JFrame{
     }
 
     private void search(int option){
-        String input = userInput.getText();
+        String input = userInput.getText();                                             //input from searchbar
         if(animals.size()!=0){
 
+            //construct dynamically results
             List<JButton> buttons = new ArrayList<>();
             JPanel content = new JPanel();
-            content.setLayout(new GridLayout(animals.size(), 1)); //rows, 1 column
+            content.setLayout(new GridLayout(animals.size(), 1));                   //rows, 1 column
             int i = 0;
             boolean op1 = false; boolean op2 = false; boolean op3 = false;
             for (Animal animal : animals){
@@ -86,17 +87,17 @@ public final class Menu extends JFrame{
                     buttons.get(i).setFocusable(false);
 
                     //on button click event search result
-                    buttons.get(i).addActionListener(new ActionListener() {
+                    buttons.get(i).addActionListener(new ActionListener() {          //create listener for each button
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            new Edit(animal);
+                            new Edit(animal);                                       //pass animal instance
                         }
                     });
                     content.add(buttons.get(i));
                     i++;
                 }
             }
-            results.setViewportView(content);
+            results.setViewportView(content);                                         //add buttons list to JScrollPane
             if(buttons.size()==0){
                 JOptionPane.showMessageDialog(Menu.this,"No available animals!");
             }

@@ -20,7 +20,7 @@ public final class Edit extends JFrame{
     private JTextArea description;
     private JButton edit;
     private JButton deleteButton;
-    private boolean flag = false;
+    private boolean flag = false;                                                   //switcher for edit / save
 
     //instance initializer
     {
@@ -44,7 +44,7 @@ public final class Edit extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(!flag) {
-                    flag = true;                                                        //enable editing
+                    flag = true;                                                   //enable editing
                 }else{
                     flag = false;
                 }
@@ -55,8 +55,8 @@ public final class Edit extends JFrame{
         deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                animals.remove(animal);
-                Zoo.serialize(animals,"res/animals.ser");
+                animals.remove(animal);                                             //delete animal
+                Zoo.serialize(animals,"res/animals.ser");                   //update registration file
                 dispose();
             }
         });
@@ -72,7 +72,7 @@ public final class Edit extends JFrame{
         max_age.setValue(animal.getMax_age());
         animalClass.setSelectedItem(animal.getKind());
         description.setText(animal.getDescription());
-        disableInfo();
+        disableInfo();                                                       //disable fields while edit is disabled
     }
 
     private void disableInfo(){
@@ -90,14 +90,14 @@ public final class Edit extends JFrame{
     }
 
     private void edit(){
-        if(flag) {                                                                                          //edit
+        if(flag) {                                                                  //edit
             name.setEnabled(true);
             weight.setEnabled(true);
             max_age.setEnabled(true);
             description.setEnabled(true);
             edit.setText("Save");
             deleteButton.setEnabled(false);
-        }else{                                                                                              //save
+        }else{                                                                     //save
             //check for valid name
             if(name.getText().equals("")){
                 JOptionPane.showMessageDialog(Edit.this,"Please give a name.");
@@ -105,16 +105,16 @@ public final class Edit extends JFrame{
             if(exists()){
                 StringBuffer message = new StringBuffer();
                 message.append(name.getText()).append("Invalid name, please modify the animal name!\n");
-                JOptionPane.showMessageDialog(Edit.this,message);                                        //dialog window
+                JOptionPane.showMessageDialog(Edit.this,message);   //dialog window
             }else{
                 modify();
-                Zoo.serialize(animals,"res/animals.ser");
+                Zoo.serialize(animals,"res/animals.ser");                 //update registration file
                 dispose();
             }
         }
     }
 
-    private boolean exists(){
+    private boolean exists(){                                                   //check if animal name already exists
         for(Animal animal : animals){
             if(animal.getName().equals(name.getText())){
                 return true;
@@ -123,7 +123,7 @@ public final class Edit extends JFrame{
         return false;
     }
 
-    private void modify(){
+    private void modify(){                                                              //store the changes
         animal.setName(name.getText());
         animal.setWeight(Double.valueOf(weight.getValue().toString()));
         animal.setMax_age(Integer.valueOf(max_age.getValue().toString()));

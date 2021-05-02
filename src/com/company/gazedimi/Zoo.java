@@ -15,17 +15,11 @@ public class Zoo {
     }
 
     public static void main(String[] args) {
-        
-        //for testing
-        /*for (Animal a : animals){
-            System.out.println(a.getCode() + " " + a.getName() + " " + a.getKind() + " " + a.getWeight() + " " + a.getMax_age() + " " + a.getDescription());
-        }
-        System.out.println("Size " + animals.size());*/
 
-	    new Menu();                                                                     //open main form
+	    new Menu();                                                                         //open main form
     }
 
-    public static void serialize(List<Animal> animals, String filename){                       //write instances to file
+    public static void serialize(List<Animal> animals, String filename){                    //write instances to file
         try {
             FileOutputStream f = new FileOutputStream(filename);
             ObjectOutputStream o = new ObjectOutputStream(f);
