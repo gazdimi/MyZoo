@@ -1,6 +1,8 @@
 package com.company.gazedimi;
 
-public class Animal {
+import java.io.*;
+
+public class Animal implements Serializable {
     private int code;
     private String name;
     private Kind kind;
@@ -38,8 +40,32 @@ public class Animal {
 
     //check for existing animal
     public static final boolean checkExistence(String code, String name, String kind, double weight, int max_age, String description){
-        //System.out.println(code + " " + name + " " + kind + " " + weight + " " + max_age + " " + description);   for testing
+        for(Animal a : Zoo.animals){
+            if(a.getName().equals(name))
+                return true;
+        }
+        addAnimal(code, name, kind, weight, max_age, description);
         return false;
+    }
+
+    private static void addAnimal(String code, String name, String kind, double weight, int max_age, String description){
+            switch (Kind.valueOf(kind)){
+                case Mammals:
+                    new Mammals(Integer.valueOf(code), name, weight, max_age, description);
+                    break;
+                case Amphibians:
+                    new Amphibians(Integer.valueOf(code), name, weight, max_age, description);
+                    break;
+                case Birds:
+                    new Birds(Integer.valueOf(code), name, weight, max_age, description);
+                    break;
+                case Fish:
+                    new Fish(Integer.valueOf(code), name, weight, max_age, description);
+                    break;
+                case Reptiles:
+                    new Reptiles(Integer.valueOf(code), name, weight, max_age, description);
+                    break;
+            }
     }
 
     /*public static void addAnimal(Animal animal){          //will be removed from here

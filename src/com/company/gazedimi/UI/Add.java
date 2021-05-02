@@ -1,6 +1,7 @@
 package com.company.gazedimi.UI;
 
 import com.company.gazedimi.Animal;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -35,10 +36,10 @@ public final class Add extends JFrame {
         setTitle("MyZoo - Add Animal");
         setPreferredSize(new Dimension(500, 400));
         setContentPane(addPanel);
-        setDefaultCloseOperation(HIDE_ON_CLOSE); //DISPOSE_ON_CLOSE (another option)
+        setDefaultCloseOperation(HIDE_ON_CLOSE);
         weight.setModel(numberModel);
         pack();
-        setLocationRelativeTo(null);                                                //display form in center
+        setLocationRelativeTo(null);                                                                                        //display form in center
         code.setText(availableCode);
         setVisible(true);
 
@@ -46,8 +47,23 @@ public final class Add extends JFrame {
         addAnimal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Animal.checkExistence(code.getText(), name.getText(), (String) animalClass.getSelectedItem(), Double.valueOf(weight.getValue().toString()), (Integer) maxAge.getValue(), description.getText());
 
+                //check for valid code
+                boolean invalidCode = checkCode(Integer.valueOf(code.getText()));
+                if(invalidCode || code.getText().equals("")){
+                    JOptionPane.showMessageDialog(Add.this,"Please select another code.");          //dialog window
+                }else {
+
+                    //check for valid name
+                    if(name.getText().equals("")){
+                        JOptionPane.showMessageDialog(Add.this,"Please give a name.");
+                    }
+                    if(Animal.checkExistence(code.getText(), name.getText(), (String) animalClass.getSelectedItem(), Double.valueOf(weight.getValue().toString()), (Integer) maxAge.getValue(), description.getText())){
+                        StringBuffer message = new StringBuffer();
+                        message.append(name.getText()).append(" already exists, please add another animal!\n");
+                        JOptionPane.showMessageDialog(Add.this,message);                                        //dialog window
+                    }
+                }
 
                 setVisible(false);
                 clear();
@@ -68,8 +84,10 @@ public final class Add extends JFrame {
             int previous_code = animals.get(0).getCode();
             for (int i = 1; i < animals.size(); i++) {
                 int current_code = animals.get(i).getCode();
-                if (current_code - previous_code != 1) {
+                if (current_code - previous_code != 1) {              //return available code (case of deleting animal)
                     return Integer.toString(i);
+                }else if(i+1 == animals.size()){                                    //return next code
+                    return Integer.toString(i+1);
                 }
                 previous_code = current_code;
             }
@@ -77,8 +95,18 @@ public final class Add extends JFrame {
         return Integer.toString(0);                                             //no available animals in list
     }
 
+    private boolean checkCode(int code){
+        for (Animal a : animals){
+            if(code==a.getCode()){
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void clear(){
-        code.setText(autocomplete());
+        availableCode = autocomplete();
+        code.setText(availableCode);
         name.setText("");
         weight.setValue(0);
         maxAge.setValue(0);

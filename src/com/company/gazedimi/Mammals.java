@@ -13,6 +13,7 @@ public class Mammals extends Animal implements IAnimals{
         super.setDescription(description);
 
         Zoo.animals.add(this);
+        Zoo.serialize(Zoo.animals,"res/animals.ser");
     }
 
     /*public void example(){
