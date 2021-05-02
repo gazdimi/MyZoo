@@ -1,6 +1,6 @@
 package com.company.gazedimi;
 
-public class Reptiles extends Animal implements IAnimals{
+public class Reptiles extends Animal{
 
     private Kind animal_class = Kind.Reptiles;
 
@@ -14,11 +14,5 @@ public class Reptiles extends Animal implements IAnimals{
 
         Zoo.animals.add(this);
         Zoo.serialize(Zoo.animals,"res/animals.ser");
-    }
-
-    @Override
-    public Reptiles edit() {
-        //edit
-        return this;
     }
 }

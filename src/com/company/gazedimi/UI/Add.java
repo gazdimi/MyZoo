@@ -53,12 +53,11 @@ public final class Add extends JFrame {
                 if(invalidCode || code.getText().equals("")){
                     JOptionPane.showMessageDialog(Add.this,"Please select another code.");          //dialog window
                 }else {
-
                     //check for valid name
                     if(name.getText().equals("")){
                         JOptionPane.showMessageDialog(Add.this,"Please give a name.");
                     }
-                    if(Animal.checkExistence(code.getText(), name.getText(), (String) animalClass.getSelectedItem(), Double.valueOf(weight.getValue().toString()), (Integer) maxAge.getValue(), description.getText())){
+                    if(Animal.checkExistence(code.getText(), name.getText(), (String) animalClass.getSelectedItem(), Double.valueOf(weight.getValue().toString()), Integer.valueOf(maxAge.getValue().toString()), description.getText())){
                         StringBuffer message = new StringBuffer();
                         message.append(name.getText()).append(" already exists, please add another animal!\n");
                         JOptionPane.showMessageDialog(Add.this,message);                                        //dialog window
