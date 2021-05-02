@@ -1,6 +1,6 @@
 package com.company.gazedimi;
 
-public class Mammals extends Animal implements IAnimals{
+public class Mammals extends Animal{
 
     private Kind animal_class = Kind.Mammals;
 
@@ -14,17 +14,5 @@ public class Mammals extends Animal implements IAnimals{
 
         Zoo.animals.add(this);
         Zoo.serialize(Zoo.animals,"res/animals.ser");
-    }
-
-    /*public void example(){
-        for (Kind k : Kind.values()){
-            System.out.println(k);
-        }
-    }*/
-
-    @Override
-    public Mammals edit() {
-        //edit
-        return this;
     }
 }

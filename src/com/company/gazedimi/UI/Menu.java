@@ -90,6 +90,7 @@ public final class Menu extends JFrame{
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             new Edit(animal);
+                            //search(3);
                         }
                     });
                     content.add(buttons.get(i));

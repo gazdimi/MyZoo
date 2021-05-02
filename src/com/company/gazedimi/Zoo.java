@@ -25,7 +25,7 @@ public class Zoo {
 	    new Menu();                                                                     //open main form
     }
 
-    static void serialize(List<Animal> animals, String filename){                       //write instances to file
+    public static void serialize(List<Animal> animals, String filename){                       //write instances to file
         try {
             FileOutputStream f = new FileOutputStream(filename);
             ObjectOutputStream o = new ObjectOutputStream(f);
@@ -34,7 +34,6 @@ public class Zoo {
             f.close();
         } catch (IOException e) {
             e.printStackTrace();
-            //System.out.println("Error occurred during animal registration...");
         }
     }
 
