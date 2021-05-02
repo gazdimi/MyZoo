@@ -104,7 +104,7 @@ public final class Edit extends JFrame{
             }
             if(exists()){
                 StringBuffer message = new StringBuffer();
-                message.append(name.getText()).append("Invalid name, please modify the animal name!\n");
+                message.append(name.getText()).append(" Invalid name, please modify the animal name!\n");
                 JOptionPane.showMessageDialog(Edit.this,message);   //dialog window
             }else{
                 modify();
